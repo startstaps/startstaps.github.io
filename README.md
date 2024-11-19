@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8" lang="ru">
     <title>Проект реализации изучения веб разработки</title>
-    <style>
-			
+    <style>		
     </style>
   </head>
   <body>
