@@ -27,7 +27,7 @@ body {
   min-width: 1200px;
   margin: 0;
   padding: 50px;
-  color: red;
+  color: $white;
   font: 16px Verdana, sans-serif;
   background: $bg;
   -webkit-user-select: none;
@@ -35,7 +35,7 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
-#wrapper {
+wrapper {
   position: relative;
 }
 
