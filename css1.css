@@ -35,14 +35,14 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
-#wrapper {
+.wrapper {
   position: relative;
 }
 
 .branch {
   position: relative;
   margin-left: $horizontal-gutter + $label-width;
-  &:before {
+&:before {
     content: "";
     width: $horizontal-gutter / 2;
     border-top: 2px solid $white;
