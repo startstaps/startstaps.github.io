@@ -1,139 +1,113 @@
-//------- {{ Variables }} -------//
-
-$white: red;
-$bg: green;
-
-$horizontal-gutter: 100px;
-$border-radius: 10px;
-
-$entry-min-height: 60px;
-
-$label-width: 150px;
-$label-height: 30px;
-$label-border-radius: 5px;
-
-
-//------- {{ Styles }} -------//
-
-*, 
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-body {
-  min-width: 1200px;
+* {
   margin: 0;
-  padding: 50px;
-  color: $white;
-  font: 16px Verdana, sans-serif;
-  background: $bg;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.wrapper {
-  position: relative;
+  padding: 0;
 }
 
-.branch {
+.tree {
   position: relative;
-  margin-left: $horizontal-gutter + $label-width;
-&:before {
-    content: "";
-    width: $horizontal-gutter / 2;
-    border-top: 2px solid $white;
-    position: absolute;
-    left: -$horizontal-gutter;
-    top: 50%;
-    margin-top: 1px;
-  }
-}
-.entry {
-  position: relative;
-  min-height: $entry-min-height;
-  &:before {
-    content: "";
-    height: 100%;
-    border-left: 2px solid $white;
-    position: absolute;
-    left: -($horizontal-gutter / 2);
-  }      
-&:after {
-    content: "";
-    width: $horizontal-gutter / 2;
-    border-top: 2px solid $white;
-    position: absolute;
-    left: -($horizontal-gutter / 2);
-    top: 50%;
-    margin-top: 1px;
-  }
-  &:first-child {
-    &:before {
-      width: $border-radius;
-      height: 50%;
-      top: 50%;
-      margin-top: 2px;
-      border-radius: $border-radius 0 0 0;
-    }
-    &:after {
-      height: $border-radius;
-      border-radius: $border-radius 0 0 0;
-    }
-  }
-  &:last-child {
-    &:before {
-      width: $border-radius;
-      height: 50%;
-      top: 50%;
-      margin-top: 2px;
-      border-radius: $border-radius 0 0 0;
-    }
-    &:after {
-      height: $border-radius;
-      border-radius: $border-radius 0 0 0;
-    }
-  }
-  &:last-child {
-    &:before {
-      width: $border-radius;
-      height: 50%;
-      border-radius: 0 0 0 $border-radius;
-    }
-    &:after {
-      height: $border-radius;
-      border-top: none;
-      border-bottom: 2px solid $white;
-      border-radius: 0 0 0 $border-radius;
-      margin-top: -$border-radius + 1px;
-    }
-  }
-  &.sole {
-    &:before {
-      display: none;
-    }
-    &:after {
-      width: $horizontal-gutter / 2;
-      height: 0;
-      margin-top: 1px;
-      border-radius: 0;
-    }
-  }
+  overflow: hidden;
+  padding: 0 0 20px 0;
 }
 
-.label {
-  display: block;
-  min-width: $label-width;
-  padding: 5px 10px;
-  line-height: $label-height - 5px * 2;
+.tree ul {
+  position: relative;
+  padding: 20px 0;
+  transition: all 0.5s;
+}
+
+.tree li {
+  list-style-type: none;
+  float: left;
+  position: relative;
+  padding: 20px 5px 0 5px;
   text-align: center;
-  border: 2px solid $white;
-  border-radius: $label-border-radius;
+  transition: all 0.5s;
+}
+
+.tree li::before,
+.tree li::after {
+  content: '';
   position: absolute;
-  left: 0;
-  top: 50%;
-  margin-top: -($label-height / 2);
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+
+.tree li:only-child::after,
+.tree li:only-child::before {
+  display: none;
+}
+
+.tree li:only-child {
+  padding-top: 0;
+}
+
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: 0 none;
+}
+
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 2px 0 0;
+}
+
+.tree li:first-child::after {
+  border-radius: 2px 0 0 0;
+}
+
+.tree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 20px;
+  border-left: 1px solid #ccc;
+}
+
+.tree li a {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  text-decoration: none;
+  color: #555;
+  font-size: 16px;
+  transition: all 0.5s;
+}
+
+.tree li a:hover,
+.tree li a:hover+ul li a {
+  border: 1px solid cornflowerblue;
+  background: lightskyblue;
+  color: #000;
+}
+
+.tree li a:hover+ul li::after,
+.tree li a:hover+ul li::before,
+.tree li a:hover+ul::before,
+.tree li a:hover+ul ul::before {
+  border-color: #999;
+}
+
+img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  opacity: 0.4;
+}
+
+.tree li a:hover img,
+.tree li a:hover+ul img {
+  opacity: 0.8;
 }
