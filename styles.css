@@ -1,6 +1,5 @@
 body {
     font-family: Arial, sans-serif;
-color: red;
 }
 
 #tree-container {
@@ -10,33 +9,13 @@ color: red;
 }
 
 .node {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-    position: relative;
+    fill: #8FBC8F; /* Цвет узла (листья) */
+    stroke: #2E8B57; /* Цвет обводки */
+    stroke-width: 2;
 }
 
-.node::before,
-.node::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 50%;
-    height: 1px;
-    background: #ccc;
-}
-
-.node::before {
-    left: -50%;
-}
-
-.node::after {
-    right: -50%;
-}
-
-.node:first-child::before,
-.node:last-child::after {
-    display: none;
+.text {
+    font-size: 14px;
+    text-anchor: middle;
+    fill: white; /* Цвет текста */
 }
