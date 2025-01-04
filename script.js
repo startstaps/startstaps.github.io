@@ -71,3 +71,23 @@ function drawNode(node) {
         drawNode(child); // Рекурсивно рисуем потомков
     });
 }
+// Пример обработчика клика на иконке родителя
+function onParentIconClick(parentId) {
+    // Открываем модальное окно для ввода данных
+    openModal();
+    
+    // Обработчик нажатия кнопки "Сохранить"
+    document.getElementById('saveButton').onclick = function() {
+        const childName = document.getElementById('childNameInput').value;
+        const newChildId = generateNewId(); // Функция для генерации нового ID
+
+        // Добавляем нового потомка в структуру данных
+        addChildToParent(parentId, { name: childName, id: newChildId });
+
+        // Обновляем визуальное представление дерева
+        updateTreeView();
+        
+        // Закрываем модальное окно
+        closeModal();
+    };
+}
