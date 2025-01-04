@@ -19,3 +19,8 @@ body {
     text-anchor: middle;
     fill: white; /* Цвет текста */
 }
+
+.line {
+    stroke: #2E8B57; /* Цвет линий */
+    stroke-width: 2;
+}
