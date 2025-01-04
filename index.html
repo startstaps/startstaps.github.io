@@ -1,57 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="css1.css">
-  <title>Родовое дерево 2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генеалогическое Дерево</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <div class="tree">
-    <ul>
-      <li><a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x54.jpg">Мать5</a></li>
-      <li>
-        <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x54.jpg">Отец</a>
-        <ul>
-          <li>
-            <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x540.jpg">Сын</a>
-            <ul>
-              <li>
-                <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x540.jpg">Внук</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x540.jpg">Дочь</a>
-            <ul>
-              <li>
-                <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x540.jpg">Внучка</a>
-              </li>
-              <li>
-                <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x540.jpg">Внук</a>
-                <ul>
-                  <li>
-                    <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x540.jpg">Правнучка</a>
-                  </li>
-                  <li>
-                    <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x540.jpg">Правнук</a>
-                  </li>
-                  <li>
-                    <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x540.jpg">Правнучка</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#"><img src="https://ss.metronews.ru/userfiles/materials/74/741810/858x540.jpg">Внучка</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</body>
+    <div id="tree-container">
+        <div id="tree"></div>
+    </div>
+    <button onclick="addNode()">Добавить предка/потомка</button>
 
+    <script src="script.js"></script>
+</body>
 </html>
