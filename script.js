@@ -1,93 +1,45 @@
-let svg = document.getElementById('tree');
-let nodes = []; // Массив для хранения узлов
-let idCounter = 0; // Счетчик ID для узлов
-
-// Начальный узел (корень дерева)
-const root = {
-    id: idCounter++,
-    name: 'Корень',
-    x: 400,
-    y: 50,
-    children: []
+// script.js
+const familyTreeData = {
+    name: "Прадедушка",
+    children: [
+        {
+            name: "Дедушка",
+            children: [
+                { name: "Отец", children: [] },
+                { name: "Дядя", children: [] }
+            ]
+        },
+        {
+            name: "Бабушка",
+            children: [
+                { name: "Тетя", children: [] }
+            ]
+        }
+    ]
 };
 
-nodes.push(root);
+function createNode(data) {
+    const node = document.createElement('div');
+    node.className = 'node';
+    node.innerText = data.name;
 
-function addNode() {
-    const name = prompt("Введите имя:");
-    const parentId = parseInt(prompt("Введите ID родителя (или оставьте пустым для корня):")) || root.id;
+    if (data.children.length > 0) {
+        const line = document.createElement('div');
+        line.className = 'line';
+        node.appendChild(line);
 
-    const parentNode = nodes.find(node => node.id === parentId);
-    
-    if (name && parentNode) {
-        const newNode = {
-            id: idCounter++,
-            name: name,
-            x: parentNode.x + (Math.random() * 100 - 50), // Случайная позиция по оси X относительно родителя
-            y: parentNode.y + 100, // Позиция ниже родителя
-            children: []
-        };
-
-        parentNode.children.push(newNode);
-        nodes.push(newNode);
-        drawTree();
-    } else {
-        alert("Ошибка: имя не введено или родитель не найден.");
+        const childrenContainer = document.createElement('div');
+        childrenContainer.style.display = 'flex';
+        data.children.forEach(child => {
+            const childNode = createNode(child);
+            childrenContainer.appendChild(childNode);
+        });
+        node.appendChild(childrenContainer);
     }
+
+    return node;
 }
 
-function drawTree() {
-    svg.innerHTML = ''; // Очищаем SVG перед перерисовкой
-    drawNode(root);
-}
-
-function drawNode(node) {
-    // Рисуем узел
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute('class', 'node');
-    circle.setAttribute('cx', node.x);
-    circle.setAttribute('cy', node.y);
-    circle.setAttribute('r', 20);
-
-    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    text.setAttribute('class', 'text');
-    text.setAttribute('x', node.x);
-    text.setAttribute('y', node.y + 5); // Центрируем текст
-    text.textContent = node.name;
-
-    svg.appendChild(circle);
-    svg.appendChild(text);
-
-    // Рисуем линии к потомкам
-    node.children.forEach(child => {
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute('class', 'line');
-        line.setAttribute('x1', node.x);
-        line.setAttribute('y1', node.y + 20); // Нижняя часть круга родителя
-        line.setAttribute('x2', child.x);
-        line.setAttribute('y2', child.y - 20); // Верхняя часть круга ребенка
-        svg.appendChild(line);
-
-        drawNode(child); // Рекурсивно рисуем потомков
-    });
-}
-// Пример обработчика клика на иконке родителя
-function onParentIconClick(parentId) {
-    // Открываем модальное окно для ввода данных
-    openModal();
-    
-    // Обработчик нажатия кнопки "Сохранить"
-    document.getElementById('saveButton').onclick = function() {
-        const childName = document.getElementById('childNameInput').value;
-        const newChildId = generateNewId(); // Функция для генерации нового ID
-
-        // Добавляем нового потомка в структуру данных
-        addChildToParent(parentId, { name: childName, id: newChildId });
-
-        // Обновляем визуальное представление дерева
-        updateTreeView();
-        
-        // Закрываем модальное окно
-        closeModal();
-    };
-}
+const familyTreeContainer = document.getElementById('family-tree');
+const familyTreeNode = createNode(familyTreeData);
+familyTreeContainer.appendChild(familyTreeNode);
