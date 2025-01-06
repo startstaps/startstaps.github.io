@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Генеалогическое Дерево</title>
     <link rel="stylesheet" href="styles.css">
+    <title>Генеалогическое дерево</title>
 </head>
 <body>
-    <div id="tree-container">
-        <svg id="tree" width="800" height="600"></svg>
+    <div class="background">
+        <div class="family-tree">
+            <div class="person">Дедушка</div>
+            <div class="person">Бабушка</div>
+            <div class="line"></div>
+            <div class="person">Папа</div>
+            <div class="person">Мама</div>
+            <div class="line"></div>
+            <div class="person">Я</div>
+        </div>
     </div>
-    <button onclick="addNode()">Добавить предка/потомка</button>
-
-    <script src="script.js"></script>
 </body>
 </html>
