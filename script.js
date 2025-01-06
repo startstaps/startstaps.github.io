@@ -26,7 +26,7 @@ const margin = { top: 20, right: 120, bottom: 20, left: 120 },
 // Создание svg-контейнера
 const svg = d3.select("svg")
     .append("g")
-    .attr("transform", translate(${margin.left},${margin.top}));
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // Создание дерева
 const tree = d3.tree().size([height, width]);
