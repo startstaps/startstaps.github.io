@@ -1,26 +1,49 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
 }
 
-#tree-container {
+.background {
+    background-image: url('background.jpg'); /* Замените на ваше изображение */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
 }
 
-.node {
-    fill: #8FBC8F; /* Цвет узла (листья) */
-    stroke: #2E8B57; /* Цвет обводки */
-    stroke-width: 2;
+.family-tree {
+    text-align: center;
+    position: relative;
 }
 
-.text {
-    font-size: 14px;
-    text-anchor: middle;
-    fill: white; /* Цвет текста */
+.person {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px auto;
+    display: inline-block;
 }
 
 .line {
-    stroke: #2E8B57; /* Цвет линий */
-    stroke-width: 2;
+    width: 2px;
+    height: 50px; /* Высота линии между поколениями */
+    background-color: #333;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .family-tree {
+        flex-direction: column;
+    }
+
+    .line {
+        height: 30px; /* Уменьшаем высоту линии на мобильных устройствах */
+    }
 }
