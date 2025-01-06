@@ -51,7 +51,7 @@ const node = svg.selectAll(".node")
     .data(root.descendants())
     .enter().append("g")
     .attr("class", d => "node" + (d.children ? " node--internal" : " node--leaf"))
-    .attr("transform", d => translate(${d.y},${d.x}));
+    .attr("transform", d => `translate(${d.y},${d.x})`);
 
 // Добавление круга к узлам
 node.append("circle")
