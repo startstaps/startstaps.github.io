@@ -1,14 +1,123 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Тункинский районный суд</title>
-    <style>        
-    </style>
+  <meta charset="UTF-8">
+  <title>Тункинский районный суд</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    header {
+      background-color: #004085;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #0069d9;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      display: block;
+    }
+    nav a:hover {
+      background-color: #0056b3;
+    }
+    main {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    footer {
+      background-color: #004085;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+    h2, h3 {
+      color: #004085;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+  </style>
 </head>
 <body>
-    <p>Тункинский районный суд</p>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="./script.js"></script>
+
+  <header>
+    <h1>Тункинский районный суд</h1>
+  </header>
+
+  <nav>
+    <a href="#about">О суде</a>
+    <a href="#cases">Судебное делопроизводство</a>
+    <a href="#schedule">График работы</a>
+    <a href="#contacts">Контакты</a>
+    <a href="#citizens">Информация для граждан</a>
+  </nav>
+
+  <main>
+    <section id="about">
+      <h2>О суде</h2>
+      <p>Тункинский районный суд расположен в Тункинском районе Республики Бурятия, России. Он рассматривает гражданские, административные и уголовные дела, проводит судебные заседания и обеспечивает защиту прав и законных интересов граждан и организаций. Суд также занимается вопросами, связанными с правосудием и соблюдением законодательства. </p>
+      <p>Целью работы суда является обеспечить справедливость, защиту прав и законных интересов представителей общества.</p>
+    </section>
+
+    <section id="cases">
+      <h2>Судебное делопроизводство</h2>
+      <ul>
+        <li><a href="#list">Список рассматриваемых дел</a></li>
+        <li><a href="#archive">Архив судебных решений</a></li>
+        <li><a href="#chart">Расписание судебных заседаний</a></li>
+        <li><a href="#supply">Порядок подачи иска</a></li>
+        <li><a href="#statements">Образцы заявлений</a></li>
+      </ul>
+    </section>
+
+    <section id="schedule">
+      <h2>График работы</h2>
+      <ul>
+        <li>Понедельник – Четверг: 8:00 – 18:00</li>
+        <li>Пятница: 8:00 – 17:00</li>
+        <li>Обед: 13:00 – 14:00</li>
+        <li>Суббота и воскресенье — выходные</li>
+      </ul>
+    </section>
+
+    <section id="contacts">
+      <h2>Контакты</h2>
+      <p><strong>Адрес:</strong> Республика Бурятия, с. Кырен, ул. Ленина, д. 73</p>
+      <p><strong>Телефон:</strong> +7 (30147) 4-12-34</p>
+      <p><strong>Email:</strong> <a href="mailto:tunkinsky@sudrf.ru">tunkinsky@sudrf.ru</a></p>
+      <p><strong>Приёмная:</strong> каб. №1, Пн–Пт</p>
+    </section>
+
+    <section id="citizens">
+      <h2>Информация для граждан</h2>
+      <ul>
+        <li><a href="#">Права и обязанности сторон</a></li>
+        <li><a href="#">Порядок обжалования решений</a></li>
+        <li><a href="#">Порядок подачи жалоб</a></li>
+        <li><a href="#">Доступ к судебным заседаниям</a></li>
+        <li><a href="#">Рекомендации по оформлению документов</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Тункинский районный суд. Все права защищены.
+  </footer>
+
 </body>
 </html>
