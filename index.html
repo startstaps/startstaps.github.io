@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Интерактивное родовое (генеалогическое) древо. Создайте историю своей семьи.">
+    <meta name="author" content="Family Tree App">
+    <title>Родовое древо | Интерактивная родословная</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌳</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>
+            <span class="logo">🌳</span>
+            Родовое древо
+        </h1>
+        <div class="stats">
+            👥 <span id="persons-count">0</span> персон
+        </div>
+    </div>
+    
+    <div class="toolbar">
+        <button class="btn btn-primary" id="add-person-btn">
+            ➕ Добавить персону
+        </button>
+        
+        <div class="divider"></div>
+        
+        <button class="btn btn-outline" id="zoom-in" title="Приблизить">
+            🔍 +
+        </button>
+        <button class="btn btn-outline" id="zoom-out" title="Отдалить">
+            🔍 -
+        </button>
+        <button class="btn btn-outline" id="fit-view" title="Показать всё">
+            🎯
+        </button>
+        
+        <div class="divider"></div>
+        
+        <button class="btn btn-secondary" id="export-json">
+            💾 Экспорт
+        </button>
+        <button class="btn btn-secondary" id="import-btn">
+            📂 Импорт
+        </button>
+        <input type="file" id="file-input" accept=".json" style="display: none;">
+        
+        <div class="divider"></div>
+        
+        <button class="btn btn-outline" id="clear-data" title="Очистить всё">
+            🗑️ Очистить
+        </button>
+        
+        <button class="btn btn-outline" id="load-example" title="Загрузить пример">
+            📋 Пример
+        </button>
+    </div>
+    
+    <div class="main-container">
+        <div class="canvas-container">
+            <canvas id="tree-canvas"></canvas>
+            <div class="info-panel">
+                💡 Кликните на персону для просмотра информации
+            </div>
+            <div class="zoom-indicator" id="zoom-indicator">
+                🔍 <span id="zoom-percent">100</span>%
+            </div>
+        </div>
+        
+        <div class="sidebar hidden" id="sidebar">
+            <div class="person-detail">
+                <div class="person-header">
+                    <button class="close-btn" id="close-sidebar">×</button>
+                    <div class="avatar-placeholder" id="detail-avatar">
+                        <span class="avatar-emoji">👤</span>
+                    </div>
+                    <h2 class="person-name" id="detail-name"></h2>
+                    <div class="person-dates" id="detail-dates"></div>
+                </div>
+                
+                <div class="info-section">
+                    <div class="info-row">
+                        <div class="info-label">👤 Пол</div>
+                        <div class="info-value" id="detail-gender"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">📅 Дата рождения</div>
+                        <div class="info-value" id="detail-birth"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">⚰️ Дата смерти</div>
+                        <div class="info-value" id="detail-death"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">📍 Место рождения</div>
+                        <div class="info-value" id="detail-birth-place"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">📍 Место смерти</div>
+                        <div class="info-value" id="detail-death-place"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">💼 Деятельность</div>
+                        <div class="info-value" id="detail-occupation"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">📖 Биография</div>
+                        <div class="info-value bio" id="detail-bio"></div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-secondary action-edit" id="edit-person-btn">
+                        ✏️ Редактировать
+                    </button>
+                    <button class="btn btn-danger action-delete" id="delete-person-btn">
+                        🗑️ Удалить
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Добавить персону</h2>
+            <form id="person-form">
+                <div class="form-group">
+                    <label>ФИО *</label>
+                    <input type="text" id="person-name" required placeholder="Иванов Иван Иванович">
+                </div>
+                
+                <div class="form-group">
+                    <label>Пол</label>
+                    <select id="person-gender">
+                        <option value="male">Мужской</option>
+                        <option value="female">Женский</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>Дата рождения</label>
+                        <input type="date" id="person-birth">
+                    </div>
+                    <div class="form-group half">
+                        <label>Дата смерти</label>
+                        <input type="date" id="person-death">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>Место рождения</label>
+                        <input type="text" id="person-birth-place" placeholder="Город, страна">
+                    </div>
+                    <div class="form-group half">
+                        <label>Место смерти</label>
+                        <input type="text" id="person-death-place" placeholder="Город, страна">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Деятельность</label>
+                    <input type="text" id="person-occupation" placeholder="Врач, учитель, инженер...">
+                </div>
+                
+                <div class="form-group">
+                    <label>Биография</label>
+                    <textarea id="person-bio" rows="4" placeholder="Краткая биография..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Родители</label>
+                    <select id="person-father">
+                        <option value="">— Отец —</option>
+                    </select>
+                    <select id="person-mother" style="margin-top: 8px;">
+                        <option value="">— Мать —</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Супруг(а)</label>
+                    <select id="person-spouse">
+                        <option value="">— Не указан(а) —</option>
+                    </select>
+                </div>
+                
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-primary">💾 Сохранить</button>
+                    <button type="button" class="btn btn-outline" id="modal-close">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Уведомления -->
+    <div id="notification-container"></div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
